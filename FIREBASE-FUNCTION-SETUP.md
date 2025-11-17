@@ -8,7 +8,7 @@
    - Used proper `cors` package implementation
    - Wrapped functions with `cors(req, res, async () => { ... })`
    - Handles preflight OPTIONS requests automatically
-   - Allows requests from `https://accizard-about-page.web.app`
+   - Allows requests from `https://accizard-lucban-landing-page.web.app`
 
 2. **✅ Environment Variables Modernized**
    - Removed deprecated `functions.config()`
@@ -40,13 +40,13 @@ GMAIL_PASS=accizardlucbanteamganda
 
 ### **Function Endpoints:**
 
-1. **Contact Form**: `https://us-central1-accizard-lucban.cloudfunctions.net/sendContactEmail`
-2. **Test Config**: `https://us-central1-accizard-lucban.cloudfunctions.net/testEmailConfig`
+1. **Contact Form**: `https://us-central1-accizard-lucban-official-65ba3.cloudfunctions.net/sendContactEmail`
+2. **Test Config**: `https://us-central1-accizard-lucban-official-65ba3.cloudfunctions.net/testEmailConfig`
 
 ### **Frontend Integration:**
 
 Your contact form in `index.html` should work without CORS errors. The function:
-- Accepts requests from `https://accizard-about-page.web.app`
+- Accepts requests from `https://accizard-lucban-landing-page.web.app`
 - Returns JSON responses for success/error
 - Sends emails to `accizardlucban@gmail.com`
 

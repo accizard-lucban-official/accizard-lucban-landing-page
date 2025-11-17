@@ -7,7 +7,7 @@ const app = express();
 
 // Enable CORS for all routes
 app.use(cors({
-  origin: ['https://accizard-about-page.web.app', 'http://localhost:3000'],
+  origin: ['https://accizard-lucban-landing-page.web.app', 'http://localhost:3000'],
   credentials: true
 }));
 

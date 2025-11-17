@@ -1061,7 +1061,7 @@ document.addEventListener('DOMContentLoaded', () => {
           
           // Try to fetch from Firebase Cloud Function (production)
           try {
-            const response = await fetch('https://getnews-4hksadkxba-uc.a.run.app');
+            const response = await fetch('https://us-central1-accizard-lucban-official-65ba3.cloudfunctions.net/getNews');
             if (response.ok) {
               const newsData = await response.json();
               if (newsData.articles && newsData.articles.length > 0) {
@@ -2019,7 +2019,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log('Sending contact form data...');
                     
                     // Send to Firebase Cloud Function
-                    const response = await fetch('https://sendcontactemail-4hksadkxba-uc.a.run.app', {
+                    const response = await fetch('https://us-central1-accizard-lucban-official-65ba3.cloudfunctions.net/sendContactEmail', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
