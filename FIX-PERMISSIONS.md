@@ -8,14 +8,37 @@ You need to add the "Service Account User" role to your account.
 
 ## Step-by-Step Instructions
 
-### Step 1: Go to Google Cloud IAM Console
-Open this URL in your browser:
-**https://console.cloud.google.com/iam-admin/iam?project=accizard-lucban-official-65ba3**
+### Method 1: Through Firebase Console (EASIEST - Recommended)
 
-(If that doesn't work, try: https://console.cloud.google.com/iam-admin/iam?project=accizard-lucban)
+1. **Go to Firebase Console:**
+   - Open: https://console.firebase.google.com/project/accizard-lucban-official-65ba3
+   - Make sure you're logged in with: **accizardlucbanofficial22@gmail.com**
+
+2. **Navigate to Project Settings:**
+   - Click the gear icon (⚙️) next to "Project Overview" in the left sidebar
+   - Select "Project settings"
+
+3. **Go to IAM & Admin:**
+   - Scroll down to find "Your project" section
+   - Click "Cloud resource location" or look for a link to "Google Cloud Console"
+   - OR directly go to: https://console.cloud.google.com/iam-admin/iam?project=accizard-lucban
+
+### Method 2: Direct Google Cloud Console Access
+
+**If you see a permissions error (like in your screenshot):**
+
+1. **First, request the "Role Viewer" permission:**
+   - Click the blue "Request role" button you see on the page
+   - This will send a request to grant you basic access
+
+2. **OR try accessing through Firebase:**
+   - Go to: https://console.firebase.google.com/project/accizard-lucban-official-65ba3/settings/iam
+   - This should show your IAM members
 
 ### Step 2: Find Your Account
-Look for your email address: **accizardlucbanofficial22@gmail.com**
+Once you can access the IAM page, look for your email address: **accizardlucbanofficial22@gmail.com**
+
+**Note:** The GCP project ID is `accizard-lucban` (even though your Firebase project ID is `accizard-lucban-official-65ba3`)
 
 ### Step 3: Edit Your Permissions
 1. Click the **pencil icon (✏️)** or **"Edit"** button next to your email
@@ -48,7 +71,7 @@ If you're the project owner but still can't see the "ADD" button:
 2. Try refreshing the page
 3. Check if you have "Owner" or "Editor" role already
 4. If you're the only user, you might need to enable APIs first:
-   - Go to: https://console.cloud.google.com/apis/library?project=accizard-lucban-official-65ba3
+   - Go to: https://console.cloud.google.com/apis/library?project=accizard-lucban
    - Enable: "Cloud Functions API" and "Cloud Build API"
 
 ## Still Having Issues?
