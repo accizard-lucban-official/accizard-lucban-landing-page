@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "site": "accizard-lucban-landing-page",
+      "target": "landing-page",
       "public": ".",
       "ignore": [
         "firebase.json",

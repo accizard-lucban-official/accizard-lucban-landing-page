@@ -2,6 +2,14 @@
   "projects": {
     "default": "accizard-lucban-official-65ba3"
   },
-  "targets": {},
+  "targets": {
+    "accizard-lucban-official-65ba3": {
+      "hosting": {
+        "landing-page": [
+          "accizard-lucban-landing-page"
+        ]
+      }
+    }
+  },
   "etags": {}
 }
