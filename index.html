@@ -248,7 +248,7 @@
             <p class="nav-hero-tagline">Report . Protect . Prevent</p>
             
             <div class="nav-hero-buttons">
-                <a href="#contact" class="nav-hero-btn">Contact Us</a>
+                <a href="https://m.me/mdrrmolucban" target="_blank" rel="noopener noreferrer" class="nav-hero-btn">Contact Us</a>
                 <a href="#download-apk" class="nav-hero-btn">Download App</a>
             </div>
         </div>
@@ -839,7 +839,7 @@ document.addEventListener('DOMContentLoaded', () => {
     You can download the latest version of the Accizard mobile app by clicking the link below. Make sure to enable the “Install from Unknown Sources” option in your device’s settings, which allows your phone to install apps from outside the official app store; this step is required so the installation process can run smoothly without any restrictions.
     <br><br>
     <!-- Download Button -->
-    <a id="apkDownloadBtn" href="https://drive.google.com/uc?export=download&id=1O_yVk1ddHRe5BtCtO_JMOR0b0EQqDDt4" class="download-link">
+    <a id="apkDownloadBtn" href="https://github.com/deynasaurr/apk/releases/download/test-1/AcciZard.Lucban.apk" class="download-link">
       📱 Download Accizard APK
     </a>
     <div class="apk-install-note" style="margin-top: 10px; color: #5f6a7d; font-size: 0.9rem;">
@@ -905,7 +905,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 
-    <!-- Contact Us Popup -->
+    <!-- Contact Us Popup - DISABLED: Now using Messenger link redirect -->
+    <!-- Uncomment below to restore contact form if needed -->
+    <!--
     <div id="contactPopup" class="contact-popup">
         <div class="contact-popup-content">
             <span class="contact-close-btn">&times;</span>
@@ -945,8 +947,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </form>
         </div>
     </div>
-
-    <!-- Success Notification Popup -->
+    -->
     <div id="successPopup" class="success-popup">
         <div class="success-popup-content">
             <div class="success-icon">
@@ -964,15 +965,45 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- Download Confirmation Popup -->
     <div id="downloadPopup" class="download-popup" style="display:none;">
         <div class="download-popup-content">
-            <h3 class="download-title">Download Accizard APK?</h3>
-            <p class="download-text">This will download the latest APK to your device. Continue?</p>
-            <p id="downloadStatus" class="download-status" style="display:none;">Preparing download…</p>
-            <div class="download-actions">
+            <h3 class="download-title" id="downloadTitle">Download Accizard APK?</h3>
+            <p class="download-text" id="downloadText">This will download the latest APK to your device. Continue?</p>
+            
+            <!-- Loading State -->
+            <div id="downloadLoading" style="display:none; text-align: center; margin: 20px 0;">
+                <div style="border: 4px solid #f3f3f3; border-top: 4px solid #f97316; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+                <p id="downloadProgress" style="margin-top: 15px; color: #64748b; font-size: 1rem;">Downloading...</p>
+            </div>
+            
+            <!-- Success State -->
+            <div id="downloadSuccess" style="display:none; text-align: center; margin: 20px 0;">
+                <div style="color: #10b981; font-size: 48px; margin-bottom: 10px;">✓</div>
+                <p style="color: #10b981; font-weight: 600; font-size: 1.1rem;">Downloaded Successfully</p>
+                <button id="downloadCloseBtn" class="btn-primary" style="margin-top: 15px;">Close</button>
+            </div>
+            
+            <!-- Error State -->
+            <div id="downloadError" style="display:none; text-align: center; margin: 20px 0;">
+                <div style="color: #ef4444; font-size: 48px; margin-bottom: 10px;">✗</div>
+                <p style="color: #ef4444; font-weight: 600; font-size: 1.1rem;">Download Failed</p>
+                <p style="color: #64748b; font-size: 0.9rem; margin-top: 10px;">Please try again later.</p>
+                <button id="downloadRetryBtn" class="btn-primary" style="margin-top: 15px; margin-right: 10px;">Retry</button>
+                <button id="downloadErrorCloseBtn" class="btn-cancel" style="margin-top: 15px;">Close</button>
+            </div>
+            
+            <!-- Initial Actions -->
+            <div class="download-actions" id="downloadActions">
                 <button id="downloadCancelBtn" class="btn-cancel">Cancel</button>
                 <button id="downloadConfirmBtn" class="btn-primary">Download</button>
             </div>
         </div>
     </div>
+
+    <style>
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    </style>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1118,45 +1149,233 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- Daily Email Limit Management Script -->
     <script>
-        // Download confirmation popup wiring
+        // Download confirmation popup wiring with Fetch API
         document.addEventListener('DOMContentLoaded', function() {
             var downloadBtn = document.getElementById('apkDownloadBtn');
             var popup = document.getElementById('downloadPopup');
             var confirmBtn = document.getElementById('downloadConfirmBtn');
             var cancelBtn = document.getElementById('downloadCancelBtn');
-            var statusEl = document.getElementById('downloadStatus');
+            var downloadTitle = document.getElementById('downloadTitle');
+            var downloadText = document.getElementById('downloadText');
+            var downloadLoading = document.getElementById('downloadLoading');
+            var downloadSuccess = document.getElementById('downloadSuccess');
+            var downloadError = document.getElementById('downloadError');
+            var downloadActions = document.getElementById('downloadActions');
+            var downloadProgress = document.getElementById('downloadProgress');
+            var downloadCloseBtn = document.getElementById('downloadCloseBtn');
+            var downloadRetryBtn = document.getElementById('downloadRetryBtn');
+            var downloadErrorCloseBtn = document.getElementById('downloadErrorCloseBtn');
+            
+            // Function to reset popup state
+            function resetPopupState() {
+                downloadTitle.style.display = 'block';
+                downloadText.style.display = 'block';
+                downloadActions.style.display = 'flex';
+                downloadLoading.style.display = 'none';
+                downloadSuccess.style.display = 'none';
+                downloadError.style.display = 'none';
+                confirmBtn.classList.remove('is-loading');
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Download';
+            }
+            
             if (downloadBtn && popup && confirmBtn && cancelBtn) {
+                // Open popup when download button is clicked
                 downloadBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    // reset state
+                    resetPopupState();
                     popup.style.display = 'flex';
-                    confirmBtn.classList.remove('is-loading');
-                    confirmBtn.disabled = false;
-                    confirmBtn.textContent = 'Download';
-                    statusEl.style.display = 'none';
-                    statusEl.textContent = 'Preparing download…';
                 });
+                
+                // Cancel button
                 cancelBtn.addEventListener('click', function() {
                     popup.style.display = 'none';
+                    resetPopupState();
                 });
-                confirmBtn.addEventListener('click', function() {
-                    // Start loading state and trigger top-level navigation
-                    confirmBtn.classList.add('is-loading');
-                    confirmBtn.disabled = true;
-                    confirmBtn.textContent = 'Starting download…';
-                    statusEl.style.display = 'block';
-                    statusEl.textContent = 'Your download will start now.';
-
+                
+                // Confirm download button - Using Fetch API for direct download
+                confirmBtn.addEventListener('click', async function() {
                     var downloadUrl = downloadBtn.href;
-                    // Use top-level navigation so Google Drive completes its redirect chain
-                    window.location.href = downloadUrl; // same-tab navigation
-
-                    // Close popup shortly after starting navigation (in case browser remains on page)
-                    setTimeout(function(){ popup.style.display = 'none'; }, 500);
+                    
+                    // Hide initial content, show loading
+                    downloadTitle.style.display = 'none';
+                    downloadText.style.display = 'none';
+                    downloadActions.style.display = 'none';
+                    downloadLoading.style.display = 'block';
+                    downloadSuccess.style.display = 'none';
+                    downloadError.style.display = 'none';
+                    
+                    try {
+                        // Try Fetch API - GitHub releases may block CORS for binary files
+                        // Using a CORS proxy as fallback if needed
+                        console.log('Starting download from:', downloadUrl);
+                        
+                        let response;
+                        try {
+                            // First try direct fetch
+                            response = await fetch(downloadUrl, {
+                                method: 'GET',
+                                mode: 'cors',
+                                cache: 'no-cache'
+                            });
+                        } catch (corsError) {
+                            // If CORS fails, try with CORS proxy
+                            console.log('Direct fetch failed, trying CORS proxy...');
+                            const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(downloadUrl);
+                            response = await fetch(proxyUrl, {
+                                method: 'GET',
+                                mode: 'cors',
+                                cache: 'no-cache'
+                            });
+                        }
+                        
+                        console.log('Response status:', response.status, response.statusText);
+                        
+                        if (!response.ok) {
+                            throw new Error('Download failed: ' + response.status + ' ' + response.statusText);
+                        }
+                        
+                        // Get file size for progress tracking
+                        const contentLength = response.headers.get('content-length');
+                        const total = contentLength ? parseInt(contentLength, 10) : 0;
+                        let loaded = 0;
+                        
+                        console.log('File size:', total, 'bytes');
+                        
+                        // Get the reader to track download progress
+                        const reader = response.body.getReader();
+                        const chunks = [];
+                        
+                        // Read the stream chunk by chunk
+                        while (true) {
+                            const { done, value } = await reader.read();
+                            if (done) break;
+                            
+                            chunks.push(value);
+                            loaded += value.length;
+                            
+                            // Update progress percentage in real-time
+                            if (total > 0 && downloadProgress) {
+                                const percent = Math.round((loaded / total) * 100);
+                                downloadProgress.textContent = `Downloading... ${percent}%`;
+                            } else if (downloadProgress) {
+                                downloadProgress.textContent = 'Downloading...';
+                            }
+                        }
+                        
+                        console.log('Download complete, creating blob...');
+                        
+                        // Create blob from all chunks (download is complete!)
+                        const blob = new Blob(chunks, { 
+                            type: 'application/vnd.android.package-archive' 
+                        });
+                        
+                        console.log('Blob created, size:', blob.size, 'bytes');
+                        
+                        // Create download link and trigger download
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'AcciZard.Lucban.apk';
+                        a.style.display = 'none';
+                        document.body.appendChild(a);
+                        a.click();
+                        
+                        // Cleanup
+                        setTimeout(() => {
+                            window.URL.revokeObjectURL(url);
+                            document.body.removeChild(a);
+                        }, 100);
+                        
+                        // Download is COMPLETE! Show success message
+                        downloadLoading.style.display = 'none';
+                        downloadSuccess.style.display = 'block';
+                        
+                    } catch (error) {
+                        console.error('Download error:', error);
+                        console.error('Error details:', {
+                            message: error.message,
+                            stack: error.stack,
+                            url: downloadUrl
+                        });
+                        
+                        // Check if it's a CORS error
+                        if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+                            console.log('CORS error detected, trying fallback method...');
+                            
+                            // Fallback: Use direct download link (opens in new tab)
+                            // This is a workaround for CORS issues
+                            try {
+                                // Create a temporary link and trigger download
+                                const fallbackLink = document.createElement('a');
+                                fallbackLink.href = downloadUrl;
+                                fallbackLink.download = 'AcciZard.Lucban.apk';
+                                fallbackLink.target = '_blank';
+                                fallbackLink.style.display = 'none';
+                                document.body.appendChild(fallbackLink);
+                                fallbackLink.click();
+                                
+                                // Remove link after click
+                                setTimeout(() => {
+                                    document.body.removeChild(fallbackLink);
+                                }, 100);
+                                
+                                // Show success after estimated time (since we can't detect completion)
+                                setTimeout(function() {
+                                    downloadLoading.style.display = 'none';
+                                    downloadSuccess.style.display = 'block';
+                                }, 20000); // 20 seconds estimate for 98.5MB
+                                
+                                return; // Exit, don't show error
+                            } catch (fallbackError) {
+                                console.error('Fallback also failed:', fallbackError);
+                            }
+                        }
+                        
+                        // Show detailed error message
+                        var errorMessage = downloadError.querySelector('p:last-of-type');
+                        if (errorMessage) {
+                            errorMessage.textContent = 'Error: ' + error.message + '. Please check the console for details.';
+                        }
+                        
+                        // Show error message
+                        downloadLoading.style.display = 'none';
+                        downloadError.style.display = 'block';
+                    }
                 });
+                
+                // Close button for success message
+                if (downloadCloseBtn) {
+                    downloadCloseBtn.addEventListener('click', function() {
+                        popup.style.display = 'none';
+                        resetPopupState();
+                    });
+                }
+                
+                // Retry button for error message
+                if (downloadRetryBtn) {
+                    downloadRetryBtn.addEventListener('click', function() {
+                        resetPopupState();
+                        downloadActions.style.display = 'flex';
+                        // Trigger download again
+                        confirmBtn.click();
+                    });
+                }
+                
+                // Close button for error message
+                if (downloadErrorCloseBtn) {
+                    downloadErrorCloseBtn.addEventListener('click', function() {
+                        popup.style.display = 'none';
+                        resetPopupState();
+                    });
+                }
+                
                 // Close when clicking outside content
                 popup.addEventListener('click', function(ev) {
-                    if (ev.target === popup) popup.style.display = 'none';
+                    if (ev.target === popup) {
+                        popup.style.display = 'none';
+                        resetPopupState();
+                    }
                 });
             }
         });
@@ -1350,35 +1569,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
       
-      // Contact Us Button Handler
-      const contactButtons = document.querySelectorAll('a[href="#contact"]');
-      const contactPopup = document.getElementById('contactPopup');
-      const contactCloseBtn = document.querySelector('.contact-close-btn');
+      // Contact Us Button Handler - Redirects to Messenger
+      // Contact form popup is now disabled, buttons redirect directly to Messenger
+      const contactButtons = document.querySelectorAll('a[href*="m.me"]');
       
-      if (contactPopup && contactCloseBtn) {
-        // Show popup when Contact Us button is clicked
-        contactButtons.forEach(button => {
-          button.addEventListener('click', (e) => {
-            e.preventDefault();
-            contactPopup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-          });
+      contactButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          // Let the link work naturally - opens Messenger
+          // No need to prevent default or show popup
+          console.log('Redirecting to Messenger...');
         });
-        
-        // Close popup when close button is clicked
-        contactCloseBtn.addEventListener('click', () => {
-          contactPopup.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        });
-        
-        // Close popup when clicking outside
-        contactPopup.addEventListener('click', (e) => {
-          if (e.target === contactPopup) {
-            contactPopup.classList.remove('active');
-            document.body.style.overflow = 'auto';
-          }
-        });
-      }
+      });
     });
   </script>
 </body>

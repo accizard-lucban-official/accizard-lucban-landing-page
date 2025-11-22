@@ -500,7 +500,7 @@ ul {
   position: relative;
   min-height: 100vh;
   background: url('website-bg.png');
-  background-size: 110% 110%;
+  background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -1575,7 +1575,7 @@ ul {
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
-  padding: 0 96px;
+  padding: 0;
   flex-wrap: wrap; /* responsive */
 }
 
@@ -2834,6 +2834,13 @@ ul {
   background: transparent !important;
   box-shadow: none !important;
   border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.news-row .fb-page-wrapper {
+  overflow: hidden !important;
+  height: 360px !important;
+  position: relative;
 }
 
 .news-row .fb-page,
@@ -2842,6 +2849,7 @@ ul {
   width: 460px !important;
   min-width: 460px !important;
   height: 420px !important;
+  position: relative;
 }
 
 @media (max-width: 900px) {
@@ -2852,7 +2860,15 @@ ul {
   .news-left {
     flex-basis: auto;
   }
-  .news-row .facebook-feed-container,
+  .news-row .facebook-feed-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .news-row .fb-page-wrapper {
+    height: 360px !important;
+    overflow: hidden !important;
+  }
   .news-row .fb-page,
   .news-row .fb-page span,
   .news-row .fb-page iframe {
