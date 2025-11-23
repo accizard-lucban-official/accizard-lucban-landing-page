@@ -234,11 +234,15 @@
 
     <!-- Right side video -->
     <div class="about-video">
-      <div class="video-player-wrapper">
-        <video autoplay muted loop playsinline onerror="this.style.display='none';">
-          <source src="tpv.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+      <!-- YouTube video: https://youtu.be/qdk4qGwcmG4 - Opens in popup -->
+      <div class="video-card youtube-video-card" data-youtube="true" data-youtube-id="qdk4qGwcmG4">
+        <div class="youtube-preview-container">
+          <img src="https://img.youtube.com/vi/qdk4qGwcmG4/hqdefault.jpg" alt="AcciZard About Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/qdk4qGwcmG4/mqdefault.jpg';">
+        </div>
+        <div class="video-overlay">
+          <h3>About AcciZard</h3>
+          <div class="play-btn">▶</div>
+        </div>
       </div>
     </div>
   </div>
