@@ -295,8 +295,10 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         e.stopPropagation();
         
-        mobileNavToggle.classList.toggle('active');
-        mobileNavMenu.classList.toggle('active');
+        const isActive = mobileNavToggle.classList.toggle('active');
+        mobileNavMenu.classList.toggle('active', isActive);
+        
+        console.log('Hamburger clicked, menu active:', isActive);
     });
     
     // Close menu when clicking on a link
