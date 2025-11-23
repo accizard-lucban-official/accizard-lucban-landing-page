@@ -4212,11 +4212,22 @@ ul {
   font-family: 'Okta Neue', sans-serif;
 }
 
+.footer-logos {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
 .footer-logo {
   height: 2rem;
   width: auto;
-  margin-bottom: 1rem;
   display: block;
+}
+
+.footer-logo-ldrrmo {
+  height: 2.5rem;
 }
 
 .footer a {
