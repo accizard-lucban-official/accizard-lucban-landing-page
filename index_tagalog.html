@@ -481,9 +481,23 @@ function showSlide(index) {
     activeSlide.style.zIndex = '2';
   }
   
-  // Update indicators
+  // Update indicators - show first 5 indicators
+  // First 4 images (0-3) sync with first 4 indicators (0-3)
+  // Images 5+ (4-17) all show the last indicator (4)
   indicators.forEach((indicator, i) => {
-    indicator.classList.toggle('active', i === index);
+    // Always show first 5 indicators
+    if (i < 5) {
+      indicator.classList.add('visible');
+    } else {
+      indicator.classList.remove('visible');
+    }
+    
+    // Set active state: first 4 images use their corresponding indicator, rest use indicator 4
+    if (index < 4) {
+      indicator.classList.toggle('active', i === index);
+    } else {
+      indicator.classList.toggle('active', i === 4);
+    }
   });
   
   currentSlide = index;

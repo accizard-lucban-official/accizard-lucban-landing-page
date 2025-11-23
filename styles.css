@@ -2131,16 +2131,12 @@ ul {
   display: block;
 }
 
-/* YouTube overlay - visible on hover */
+/* YouTube overlay - always visible like regular video card */
 .youtube-video-card .video-overlay {
   pointer-events: none;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s ease;
   z-index: 2;
-}
-
-.youtube-video-card:hover .video-overlay {
-  opacity: 1;
 }
 
 /* Enable pointer events and cursor for YouTube cards to show it's clickable */
@@ -2493,6 +2489,16 @@ ul {
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
+}
+
+/* Hide all indicators by default, JavaScript will show the appropriate 5 */
+.carousel-indicators .indicator {
+  display: none;
+}
+
+/* Show indicators that have the 'visible' class */
+.carousel-indicators .indicator.visible {
+  display: block;
 }
 
 .indicator {

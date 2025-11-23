@@ -420,46 +420,52 @@
               <img src="screenshots mobile/d.jpg" alt="AcciZard Feature 4">
             </div>
             <div class="carousel-slide" data-index="4">
-              <img src="screenshots mobile/e.jpg" alt="AcciZard Feature 5">
+              <img src="screenshots mobile/d1.jpg" alt="AcciZard Feature 5">
             </div>
             <div class="carousel-slide" data-index="5">
-              <img src="screenshots mobile/f.jpg" alt="AcciZard Feature 6">
+              <img src="screenshots mobile/d2.jpg" alt="AcciZard Feature 6">
             </div>
             <div class="carousel-slide" data-index="6">
-              <img src="screenshots mobile/g.jpg" alt="AcciZard Feature 7">
+              <img src="screenshots mobile/e.jpg" alt="AcciZard Feature 7">
             </div>
             <div class="carousel-slide" data-index="7">
-              <img src="screenshots mobile/h.jpg" alt="AcciZard Feature 8">
+              <img src="screenshots mobile/f.jpg" alt="AcciZard Feature 8">
             </div>
             <div class="carousel-slide" data-index="8">
-              <img src="screenshots mobile/i.jpg" alt="AcciZard Feature 9">
+              <img src="screenshots mobile/g.jpg" alt="AcciZard Feature 9">
             </div>
             <div class="carousel-slide" data-index="9">
-              <img src="screenshots mobile/j.jpg" alt="AcciZard Feature 10">
+              <img src="screenshots mobile/h.jpg" alt="AcciZard Feature 10">
             </div>
             <div class="carousel-slide" data-index="10">
-              <img src="screenshots mobile/k.jpg" alt="AcciZard Feature 11">
+              <img src="screenshots mobile/i.jpg" alt="AcciZard Feature 11">
             </div>
             <div class="carousel-slide" data-index="11">
-              <img src="screenshots mobile/l.jpg" alt="AcciZard Feature 12">
+              <img src="screenshots mobile/j.jpg" alt="AcciZard Feature 12">
             </div>
             <div class="carousel-slide" data-index="12">
-              <img src="screenshots mobile/m.jpg" alt="AcciZard Feature 13">
+              <img src="screenshots mobile/k.jpg" alt="AcciZard Feature 13">
             </div>
             <div class="carousel-slide" data-index="13">
-              <img src="screenshots mobile/n.jpg" alt="AcciZard Feature 14">
+              <img src="screenshots mobile/l.jpg" alt="AcciZard Feature 14">
             </div>
             <div class="carousel-slide" data-index="14">
-              <img src="screenshots mobile/o.jpg" alt="AcciZard Feature 15">
+              <img src="screenshots mobile/m.jpg" alt="AcciZard Feature 15">
             </div>
             <div class="carousel-slide" data-index="15">
-              <img src="screenshots mobile/p.jpg" alt="AcciZard Feature 16">
+              <img src="screenshots mobile/n.jpg" alt="AcciZard Feature 16">
             </div>
             <div class="carousel-slide" data-index="16">
-              <img src="screenshots mobile/q.jpg" alt="AcciZard Feature 17">
+              <img src="screenshots mobile/o.jpg" alt="AcciZard Feature 17">
             </div>
             <div class="carousel-slide" data-index="17">
-              <img src="screenshots mobile/r.jpg" alt="AcciZard Feature 18">
+              <img src="screenshots mobile/p.jpg" alt="AcciZard Feature 18">
+            </div>
+            <div class="carousel-slide" data-index="18">
+              <img src="screenshots mobile/q.jpg" alt="AcciZard Feature 19">
+            </div>
+            <div class="carousel-slide" data-index="19">
+              <img src="screenshots mobile/r.jpg" alt="AcciZard Feature 20">
             </div>
           </div>
           <button class="carousel-nav carousel-next">
@@ -485,6 +491,8 @@
         <span class="indicator" data-slide="15"></span>
         <span class="indicator" data-slide="16"></span>
         <span class="indicator" data-slide="17"></span>
+        <span class="indicator" data-slide="18"></span>
+        <span class="indicator" data-slide="19"></span>
       </div>
     </div>
   </div>
@@ -658,9 +666,23 @@ function showSlide(index) {
     activeSlide.style.zIndex = '2';
   }
   
-  // Update indicators
+  // Update indicators - show first 5 indicators
+  // First 4 images (0-3) sync with first 4 indicators (0-3)
+  // Images 5+ (4-17) all show the last indicator (4)
   indicators.forEach((indicator, i) => {
-    indicator.classList.toggle('active', i === index);
+    // Always show first 5 indicators
+    if (i < 5) {
+      indicator.classList.add('visible');
+    } else {
+      indicator.classList.remove('visible');
+    }
+    
+    // Set active state: first 4 images use their corresponding indicator, rest use indicator 4
+    if (index < 4) {
+      indicator.classList.toggle('active', i === index);
+    } else {
+      indicator.classList.toggle('active', i === 4);
+    }
   });
   
   currentSlide = index;
