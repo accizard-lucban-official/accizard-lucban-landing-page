@@ -210,11 +210,15 @@
 
     <!-- Right side video -->
     <div class="about-video">
-      <div class="video-player-wrapper">
-        <video autoplay muted loop playsinline>
-          <source src="tpv.mp4" type="video/mp4">
-          Hindi sinusuportahan ng inyong browser ang video tag.
-        </video>
+      <!-- YouTube video: https://youtu.be/qdk4qGwcmG4 - Opens in popup -->
+      <div class="video-card youtube-video-card" data-youtube="true" data-youtube-id="qdk4qGwcmG4">
+        <div class="youtube-preview-container">
+          <img src="https://img.youtube.com/vi/qdk4qGwcmG4/hqdefault.jpg" alt="AcciZard About Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/qdk4qGwcmG4/mqdefault.jpg';">
+        </div>
+        <div class="video-overlay">
+          <h3>Tungkol sa AcciZard</h3>
+          <div class="play-btn">▶</div>
+        </div>
       </div>
     </div>
   </div>
@@ -325,35 +329,49 @@
 
     <div class="screenshots-grid">
       <div class="image-card" data-carousel="true">
-        <img src="8.jpg" alt="AcciZard Feature Preview">
+        <img src="screenshots mobile/a.jpg" alt="AcciZard Feature Preview">
         <div class="image-overlay">
           <h3>See more...</h3>
         </div>
       </div>
 
-      <div class="video-card" data-video="mobapp.mp4">
-        <video src="mobapp.mp4" muted loop></video>
+      <!-- YouTube Video Embed - Start -->
+      <!-- YouTube video: https://youtube.com/shorts/Eieu9ijXTmU - Opens in popup -->
+      <div class="video-card youtube-video-card" data-youtube="true" data-youtube-id="Eieu9ijXTmU">
+        <div class="youtube-preview-container">
+          <img src="https://img.youtube.com/vi/Eieu9ijXTmU/hqdefault.jpg" alt="AcciZard Mobile App Demo" loading="lazy" onerror="this.src='https://img.youtube.com/vi/Eieu9ijXTmU/mqdefault.jpg';">
+        </div>
         <div class="video-overlay">
           <h3>Mobile App Interface</h3>
           <div class="play-btn">▶</div>
         </div>
       </div>
+      <!-- YouTube Video Embed - End -->
 
-      <div class="video-card" data-video="mobile.mp4">
-        <video src="mobile.mp4" muted loop></video>
+      <!-- YouTube Video Embed - Start -->
+      <!-- YouTube video: https://youtu.be/UT8HHQcUD3Q - Opens in popup -->
+      <div class="video-card youtube-video-card" data-youtube="true" data-youtube-id="UT8HHQcUD3Q">
+        <div class="youtube-preview-container">
+          <img src="https://img.youtube.com/vi/UT8HHQcUD3Q/hqdefault.jpg" alt="AcciZard Web Admin Dashboard" loading="lazy" onerror="this.src='https://img.youtube.com/vi/UT8HHQcUD3Q/mqdefault.jpg';">
+        </div>
         <div class="video-overlay">
           <h3>Web Admin Dashboard</h3>
           <div class="play-btn">▶</div>
         </div>
       </div>
+      <!-- YouTube Video Embed - End -->
     </div>
   </div>
 
+  <!-- Expanded video popup -->
   <!-- Expanded video popup -->
   <div class="video-popup">
     <div class="video-popup-content">
       <span class="close-btn">&times;</span>
       <video controls autoplay></video>
+      <div class="youtube-popup-container" style="display: none;">
+        <iframe id="youtube-popup-iframe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
@@ -367,19 +385,109 @@
           </button>
           <div class="carousel-slides">
             <div class="carousel-slide active" data-index="0">
-              <img src="8.jpg" alt="AcciZard Feature 1">
+              <img src="screenshots mobile/a.jpg" alt="AcciZard Feature 1">
             </div>
             <div class="carousel-slide" data-index="1">
-              <img src="9.jpg" alt="AcciZard Feature 2">
+              <img src="screenshots mobile/a1.jpg" alt="AcciZard Feature 2">
             </div>
             <div class="carousel-slide" data-index="2">
-              <img src="10.jpg" alt="AcciZard Feature 3">
+              <img src="screenshots mobile/a2.jpg" alt="AcciZard Feature 3">
             </div>
             <div class="carousel-slide" data-index="3">
-              <img src="11.jpg" alt="AcciZard Feature 4">
+              <img src="screenshots mobile/a3.jpg" alt="AcciZard Feature 4">
             </div>
             <div class="carousel-slide" data-index="4">
-              <img src="12.jpg" alt="AcciZard Feature 5">
+              <img src="screenshots mobile/a4.jpg" alt="AcciZard Feature 5">
+            </div>
+            <div class="carousel-slide" data-index="5">
+              <img src="screenshots mobile/a5.jpg" alt="AcciZard Feature 6">
+            </div>
+            <div class="carousel-slide" data-index="6">
+              <img src="screenshots mobile/b.jpg" alt="AcciZard Feature 7">
+            </div>
+            <div class="carousel-slide" data-index="7">
+              <img src="screenshots mobile/b1.jpg" alt="AcciZard Feature 8">
+            </div>
+            <div class="carousel-slide" data-index="8">
+              <img src="screenshots mobile/c.jpg" alt="AcciZard Feature 9">
+            </div>
+            <div class="carousel-slide" data-index="9">
+              <img src="screenshots mobile/c1.jpg" alt="AcciZard Feature 10">
+            </div>
+            <div class="carousel-slide" data-index="10">
+              <img src="screenshots mobile/c2.jpg" alt="AcciZard Feature 11">
+            </div>
+            <div class="carousel-slide" data-index="11">
+              <img src="screenshots mobile/c3.jpg" alt="AcciZard Feature 12">
+            </div>
+            <div class="carousel-slide" data-index="12">
+              <img src="screenshots mobile/c4.jpg" alt="AcciZard Feature 13">
+            </div>
+            <div class="carousel-slide" data-index="13">
+              <img src="screenshots mobile/c5.jpg" alt="AcciZard Feature 14">
+            </div>
+            <div class="carousel-slide" data-index="14">
+              <img src="screenshots mobile/c6.jpg" alt="AcciZard Feature 15">
+            </div>
+            <div class="carousel-slide" data-index="15">
+              <img src="screenshots mobile/c7.jpg" alt="AcciZard Feature 16">
+            </div>
+            <div class="carousel-slide" data-index="16">
+              <img src="screenshots mobile/c8.jpg" alt="AcciZard Feature 17">
+            </div>
+            <div class="carousel-slide" data-index="17">
+              <img src="screenshots mobile/c9.jpg" alt="AcciZard Feature 18">
+            </div>
+            <div class="carousel-slide" data-index="18">
+              <img src="screenshots mobile/d.jpg" alt="AcciZard Feature 19">
+            </div>
+            <div class="carousel-slide" data-index="19">
+              <img src="screenshots mobile/d1.jpg" alt="AcciZard Feature 20">
+            </div>
+            <div class="carousel-slide" data-index="20">
+              <img src="screenshots mobile/d2.jpg" alt="AcciZard Feature 21">
+            </div>
+            <div class="carousel-slide" data-index="21">
+              <img src="screenshots mobile/e.jpg" alt="AcciZard Feature 22">
+            </div>
+            <div class="carousel-slide" data-index="22">
+              <img src="screenshots mobile/f.jpg" alt="AcciZard Feature 23">
+            </div>
+            <div class="carousel-slide" data-index="23">
+              <img src="screenshots mobile/g.jpg" alt="AcciZard Feature 24">
+            </div>
+            <div class="carousel-slide" data-index="24">
+              <img src="screenshots mobile/h.jpg" alt="AcciZard Feature 25">
+            </div>
+            <div class="carousel-slide" data-index="25">
+              <img src="screenshots mobile/i.jpg" alt="AcciZard Feature 26">
+            </div>
+            <div class="carousel-slide" data-index="26">
+              <img src="screenshots mobile/j.jpg" alt="AcciZard Feature 27">
+            </div>
+            <div class="carousel-slide" data-index="27">
+              <img src="screenshots mobile/k.jpg" alt="AcciZard Feature 28">
+            </div>
+            <div class="carousel-slide" data-index="28">
+              <img src="screenshots mobile/l.jpg" alt="AcciZard Feature 29">
+            </div>
+            <div class="carousel-slide" data-index="29">
+              <img src="screenshots mobile/m.jpg" alt="AcciZard Feature 30">
+            </div>
+            <div class="carousel-slide" data-index="30">
+              <img src="screenshots mobile/n.jpg" alt="AcciZard Feature 31">
+            </div>
+            <div class="carousel-slide" data-index="31">
+              <img src="screenshots mobile/o.jpg" alt="AcciZard Feature 32">
+            </div>
+            <div class="carousel-slide" data-index="32">
+              <img src="screenshots mobile/p.jpg" alt="AcciZard Feature 33">
+            </div>
+            <div class="carousel-slide" data-index="33">
+              <img src="screenshots mobile/q.jpg" alt="AcciZard Feature 34">
+            </div>
+            <div class="carousel-slide" data-index="34">
+              <img src="screenshots mobile/r.jpg" alt="AcciZard Feature 35">
             </div>
           </div>
           <button class="carousel-nav carousel-next">
@@ -392,51 +500,165 @@
         <span class="indicator" data-slide="2"></span>
         <span class="indicator" data-slide="3"></span>
         <span class="indicator" data-slide="4"></span>
+        <span class="indicator" data-slide="5"></span>
+        <span class="indicator" data-slide="6"></span>
+        <span class="indicator" data-slide="7"></span>
+        <span class="indicator" data-slide="8"></span>
+        <span class="indicator" data-slide="9"></span>
+        <span class="indicator" data-slide="10"></span>
+        <span class="indicator" data-slide="11"></span>
+        <span class="indicator" data-slide="12"></span>
+        <span class="indicator" data-slide="13"></span>
+        <span class="indicator" data-slide="14"></span>
+        <span class="indicator" data-slide="15"></span>
+        <span class="indicator" data-slide="16"></span>
+        <span class="indicator" data-slide="17"></span>
+        <span class="indicator" data-slide="18"></span>
+        <span class="indicator" data-slide="19"></span>
+        <span class="indicator" data-slide="20"></span>
+        <span class="indicator" data-slide="21"></span>
+        <span class="indicator" data-slide="22"></span>
+        <span class="indicator" data-slide="23"></span>
+        <span class="indicator" data-slide="24"></span>
+        <span class="indicator" data-slide="25"></span>
+        <span class="indicator" data-slide="26"></span>
+        <span class="indicator" data-slide="27"></span>
+        <span class="indicator" data-slide="28"></span>
+        <span class="indicator" data-slide="29"></span>
+        <span class="indicator" data-slide="30"></span>
+        <span class="indicator" data-slide="31"></span>
+        <span class="indicator" data-slide="32"></span>
+        <span class="indicator" data-slide="33"></span>
+        <span class="indicator" data-slide="34"></span>
       </div>
     </div>
   </div>
 </section>
 <script>
-const videoCards = document.querySelectorAll('.video-card');
-const popup = document.querySelector('.video-popup');
-const popupVideo = popup.querySelector('video');
-const closeBtn = document.querySelector('.close-btn');
-
-videoCards.forEach(card => {
-  card.addEventListener('click', () => {
-    const videoSrc = card.getAttribute('data-video');
-    popupVideo.src = videoSrc;
-    popup.classList.add('active');
-    popupVideo.play();
-  });
-});
-
-closeBtn.addEventListener('click', () => {
-  popup.classList.remove('active');
-  popupVideo.pause();
-  popupVideo.currentTime = 0;
-});
-
-// Close on background click
-popup.addEventListener('click', (e) => {
-  if (e.target === popup) {
-    popup.classList.remove('active');
-    popupVideo.pause();
-    popupVideo.currentTime = 0;
+// Video card handlers - includes YouTube embeds with popup
+// Wait for DOM to be ready to ensure elements exist
+document.addEventListener('DOMContentLoaded', function() {
+  const videoCards = document.querySelectorAll('.video-card');
+  const popup = document.querySelector('.video-popup');
+  
+  if (!popup) {
+    console.error('Video popup element not found');
+    return;
   }
-});
-
-// Add hover effects for video preview
-videoCards.forEach(card => {
-  const video = card.querySelector('video');
   
-  card.addEventListener('mouseenter', () => {
-    video.play();
+  const popupVideo = popup.querySelector('video');
+  const youtubeContainer = popup.querySelector('.youtube-popup-container');
+  const youtubeIframe = popup.querySelector('#youtube-popup-iframe');
+  const closeBtn = popup.querySelector('.close-btn');
+  
+  // Handle video card clicks (both local videos and YouTube)
+  videoCards.forEach(card => {
+    // Handle clicks on the card itself
+    card.addEventListener('click', (e) => {
+      const isYouTube = card.hasAttribute('data-youtube');
+      const youtubeId = card.getAttribute('data-youtube-id');
+      
+      if (isYouTube && youtubeId) {
+        // Handle YouTube video
+        if (popupVideo && youtubeContainer && youtubeIframe) {
+          popupVideo.style.display = 'none';
+          youtubeContainer.style.display = 'block';
+          youtubeIframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+          popup.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      } else {
+        // Handle local video
+        const videoSrc = card.getAttribute('data-video');
+        if (videoSrc && popupVideo && youtubeContainer) {
+          youtubeContainer.style.display = 'none';
+          popupVideo.style.display = 'block';
+          popupVideo.src = videoSrc;
+          popup.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          setTimeout(() => {
+            popupVideo.play().catch(err => console.log('Video play error:', err));
+          }, 100);
+        }
+      }
+    });
+    
+    // Also handle clicks on the overlay
+    const overlay = card.querySelector('.video-overlay');
+    if (overlay) {
+      overlay.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isYouTube = card.hasAttribute('data-youtube');
+        const youtubeId = card.getAttribute('data-youtube-id');
+        
+        if (isYouTube && youtubeId) {
+          if (popupVideo && youtubeContainer && youtubeIframe) {
+            popupVideo.style.display = 'none';
+            youtubeContainer.style.display = 'block';
+            youtubeIframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        } else {
+          const videoSrc = card.getAttribute('data-video');
+          if (videoSrc && popupVideo && youtubeContainer) {
+            youtubeContainer.style.display = 'none';
+            popupVideo.style.display = 'block';
+            popupVideo.src = videoSrc;
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+              popupVideo.play().catch(err => console.log('Video play error:', err));
+            }, 100);
+          }
+        }
+      });
+    }
   });
   
-  card.addEventListener('mouseleave', () => {
-    video.pause();
-    video.currentTime = 0;
+  // Close button handler
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      popup.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      if (popupVideo) {
+        popupVideo.pause();
+        popupVideo.currentTime = 0;
+      }
+      if (youtubeIframe) {
+        youtubeIframe.src = '';
+      }
+    });
+  }
+  
+  // Close on background click
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      if (popupVideo) {
+        popupVideo.pause();
+        popupVideo.currentTime = 0;
+      }
+      if (youtubeIframe) {
+        youtubeIframe.src = '';
+      }
+    }
+  });
+  
+  // Add hover effects for video preview (exclude YouTube cards)
+  videoCards.forEach(card => {
+    const video = card.querySelector('video');
+    if (video && !card.hasAttribute('data-youtube')) {
+      card.addEventListener('mouseenter', () => {
+        video.play().catch(err => console.log('Video autoplay error:', err));
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    }
   });
 });
 
