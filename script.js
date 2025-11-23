@@ -81,6 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Handle mobile navigation links
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link[href^="#"]');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            handleSmoothScroll(e, this);
+        });
+    });
+    
     // Remove hash from URL on page load if it exists
     if (window.location.hash) {
         // Scroll to the section first
@@ -240,6 +248,82 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 console.log('Script.js initialization complete');
+
+// Mobile Navigation Bar - Scroll Hide/Show and Hamburger Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileNavBar = document.getElementById('mobileNavBar');
+    const mobileNavToggle = document.getElementById('mobileNavToggle');
+    const mobileNavMenu = document.getElementById('mobileNavMenu');
+    
+    if (!mobileNavBar || !mobileNavToggle || !mobileNavMenu) {
+        return;
+    }
+    
+    let lastScrollTop = 0;
+    let isScrolling = false;
+    
+    // Scroll hide/show functionality
+    function handleScroll() {
+        if (window.innerWidth > 768) return; // Only on mobile
+        
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down - hide navbar
+            mobileNavBar.classList.add('hidden');
+        } else {
+            // Scrolling up - show navbar
+            mobileNavBar.classList.remove('hidden');
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }
+    
+    // Throttle scroll events for better performance
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(function() {
+                handleScroll();
+                scrollTimeout = null;
+            }, 10);
+        }
+    });
+    
+    // Hamburger toggle functionality
+    mobileNavToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        mobileNavToggle.classList.toggle('active');
+        mobileNavMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    const navLinks = mobileNavMenu.querySelectorAll('.mobile-nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNavToggle.classList.remove('active');
+            mobileNavMenu.classList.remove('active');
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!mobileNavBar.contains(e.target) && !mobileNavMenu.contains(e.target)) {
+            mobileNavToggle.classList.remove('active');
+            mobileNavMenu.classList.remove('active');
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            mobileNavToggle.classList.remove('active');
+            mobileNavMenu.classList.remove('active');
+        }
+    });
+});
 
 
 
