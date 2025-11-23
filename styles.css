@@ -71,14 +71,14 @@ html, body {
 .language-popup-header h2 {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #000000;
   margin-bottom: 10px;
   font-family: 'Okta Neue', sans-serif;
 }
 
 .language-popup-header p {
   font-size: 1.1rem;
-  color: #666;
+  color: #000000;
   font-family: 'Okta Neue', sans-serif;
 }
 
@@ -122,7 +122,7 @@ html, body {
 .language-name {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #1f2937;
+  color: #000000;
   font-family: 'Okta Neue', sans-serif;
   transition: color 0.3s ease;
 }
@@ -1412,7 +1412,7 @@ ul {
 
 .hero-text p {
   font-size: 1.1rem;
-  color: #374151;
+  color: #000000;
   line-height: 1.6;
   margin-bottom: 30px;
   font-family: 'Okta Neue', sans-serif;
@@ -1604,7 +1604,7 @@ ul {
 
 .section-subtitle {
   text-align: center;
-  color: #64748b;
+  color: #000000;
   margin-bottom: 3rem;
   font-size: 1.2rem;
   font-weight: 400;
@@ -1623,7 +1623,7 @@ ul {
 .about-section {
   padding: 60px 2rem;
   background: white;
-  color: #333;
+  color: #000000;
   font-family: 'Okta Neue', sans-serif;
 }
 
@@ -1679,7 +1679,7 @@ ul {
   margin-bottom: 15px;
   font-family: 'Okta Neue', sans-serif;
   text-align: left;
-  color: #64748b;
+  color: #000000;
 }
 
 .about-buttons {
@@ -1799,7 +1799,7 @@ ul {
   line-height: 1.6;
   font-family: 'Okta Neue', sans-serif;
   text-align: left;
-  color: #64748b;
+  color: #000000;
 }
 
 .about-content {
@@ -1896,7 +1896,7 @@ ul {
 .feature-description {
   font-size: 0.8rem;
   line-height: 1.4;
-  color: #666;
+  color: #000000;
   font-family: 'Okta Neue', sans-serif;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -1952,7 +1952,7 @@ ul {
 /* Step Icon */
 .step-icon {
   font-size: 2.5rem;
-  color: #666;
+  color: #000000;
 }
 
 /* Step Title */
@@ -1969,7 +1969,7 @@ ul {
 /* Step Description */
 .step-description {
   font-size: 1rem;
-  color: #666;
+  color: #000000;
   line-height: 1.5;
   max-width: 220px;
   margin: 0 auto;
@@ -2361,7 +2361,7 @@ ul {
 }
 
 .carousel-close-btn:hover {
-  color: #333;
+  color: #000000;
 }
 
 /* ========================================
@@ -2695,7 +2695,7 @@ ul {
 
 .faq-header p {
   margin-top: 15px;
-  color: #666;
+  color: #000000;
   max-width: 400px;
   font-family: 'Okta Neue', sans-serif;
 }
@@ -2733,7 +2733,7 @@ ul {
   text-align: left;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #333;
+  color: #000000;
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -2892,7 +2892,7 @@ ul {
 
 .download-text {
   margin-bottom: 18px;
-  color: #5f6a7d;
+  color: #000000;
 }
 
 .download-actions {
@@ -2943,11 +2943,11 @@ ul {
 }
 @keyframes spin { from { transform: translateY(-50%) rotate(0); } to { transform: translateY(-50%) rotate(360deg); } }
 
-.download-status { color: #5f6a7d; margin: 8px 0 14px; font-size: 0.95rem; }
+.download-status { color: #000000; margin: 8px 0 14px; font-size: 0.95rem; }
 .news-section {
   background: #fafafa;
   padding: 60px 20px;
-  color: #333;
+  color: #000000;
 }
 
 /* Horizontal two-column layout for news section */
@@ -2994,7 +2994,7 @@ ul {
 }
 
 .news-follow-text {
-  color: #54617a;
+  color: #000000;
   margin-bottom: 22px;
   line-height: 1.7;
   max-width: 760px;
@@ -3382,7 +3382,7 @@ ul {
 .news-title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #000000;
   margin-bottom: 10px;
   line-height: 1.4;
   font-family: 'Okta Neue', sans-serif;
@@ -3392,7 +3392,7 @@ ul {
 }
 
 .news-description {
-  color: #666;
+  color: #000000;
   line-height: 1.8;
   margin-bottom: 15px;
   flex-grow: 1;
@@ -3467,7 +3467,7 @@ ul {
 }
 
 .news-time {
-  color: #999;
+  color: #000000;
   font-size: 0.9rem;
   font-family: 'Okta Neue', sans-serif;
 }
@@ -4084,7 +4084,7 @@ ul {
 
 .contact-popup-content h2 {
   text-align: center;
-  color: #475569;
+  color: #000000;
   margin-bottom: 20px;
   font-size: 1.2rem;
   font-weight: 700;
@@ -4111,7 +4111,7 @@ ul {
 
 .form-group label {
   font-weight: 500;
-  color: #475569;
+  color: #000000;
   margin-bottom: 4px;
   font-size: 0.75rem;
   font-family: 'Okta Neue', sans-serif;
@@ -4128,7 +4128,7 @@ ul {
   font-family: 'Okta Neue', sans-serif;
   transition: all 0.3s ease;
   background: #fafafa;
-  color: #475569;
+  color: #000000;
 }
 
 .form-group input:focus,
@@ -4141,7 +4141,7 @@ ul {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #64748b;
+  color: #000000;
 }
 
 .form-group textarea {
@@ -4294,7 +4294,7 @@ ul {
 }
 
 .success-message {
-  color: #666;
+  color: #000000;
   font-size: 0.95rem;
   line-height: 1.5;
   margin-bottom: 25px;
@@ -4533,7 +4533,7 @@ ul {
 .promotional-video-description {
   font-family: 'Okta Neue', sans-serif;
   font-size: 1rem;
-  color: #64748b;
+  color: #000000;
   line-height: 1.6;
   margin: 0;
 }
