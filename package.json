@@ -1,0 +1,13 @@
+{
+  "name": "accizard-landing-page",
+  "version": "1.0.0",
+  "description": "Accizard Lucban Landing Page",
+  "scripts": {
+    "start": "npx http-server -p 3000 -o",
+    "serve": "npx http-server -p 3000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
+
