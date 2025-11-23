@@ -1699,7 +1699,7 @@ ul {
   .about-container {
     flex-direction: column;
     gap: 30px;
-    padding: 0 1rem;
+    padding: 0 0.75rem;
   }
   
   .about-text {
@@ -1710,6 +1710,8 @@ ul {
   .about-video {
     order: 1;
     max-width: 100%;
+    width: calc(100% - 1.5rem);
+    margin: 0 auto;
   }
   
   .about-video .video-player-wrapper {
@@ -1718,6 +1720,7 @@ ul {
   
   .about-video .video-card {
     height: 300px;
+    width: 100%;
   }
   
   .about-text h2 {
