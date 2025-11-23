@@ -528,6 +528,7 @@ ul {
   right: 0;
   padding: 20px 0;
   z-index: 1000;
+  background: transparent;
 }
 
 .nav-hero-container {
@@ -699,38 +700,42 @@ ul {
   position: fixed;
   top: 56px;
   left: 0;
-  right: 0;
-  width: 100%;
+  width: 50%;
+  max-width: 300px;
   background: transparent;
   list-style: none;
   margin: 0;
   padding: 0;
-  z-index: 9999;
+  z-index: 10001;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, padding 0.3s ease;
+  transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, padding 0.3s ease, background 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: block;
+  border-radius: 0 0 12px 0;
 }
 
 .mobile-nav-menu.active {
-  max-height: 500px;
-  opacity: 1;
-  visibility: visible;
-  padding: 8px 16px;
+  max-height: 500px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  padding: 8px 16px !important;
+  background: #f97316 !important;
+  overflow: visible !important;
 }
 
 .mobile-nav-item {
   width: 100%;
   margin: 4px 0;
+  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 .mobile-nav-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: block;
   padding: 12px 16px;
   font-size: 0.95rem;
   border-radius: 8px;
@@ -751,6 +756,23 @@ ul {
 
 /* Hide old navigation on mobile */
 @media (max-width: 768px) {
+  .nav-hero-section {
+    z-index: 1;
+  }
+  
+  .nav-hero-nav {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .nav-hero-container {
+    display: none !important;
+  }
+  
   .nav-hero-links,
   .nav-hero-toggle,
   .nav-hero-links-desktop {
@@ -762,7 +784,11 @@ ul {
   }
   
   .mobile-nav-menu {
-    display: block;
+    display: block !important;
+  }
+  
+  .mobile-nav-menu.active {
+    display: block !important;
   }
 }
 
@@ -3689,10 +3715,14 @@ ul {
     width: 100%;
   }
   
+  .mission h3, .vision h3 {
+    text-align: center;
+  }
+  
   .mission p, .vision p {
     font-size: 0.9rem;
     line-height: 1.5;
-    text-align: left;
+    text-align: center;
   }
   
   /* Features Section Mobile */

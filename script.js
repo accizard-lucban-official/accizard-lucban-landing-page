@@ -296,9 +296,19 @@ document.addEventListener('DOMContentLoaded', function() {
         e.stopPropagation();
         
         const isActive = mobileNavToggle.classList.toggle('active');
-        mobileNavMenu.classList.toggle('active', isActive);
+        if (isActive) {
+            mobileNavMenu.classList.add('active');
+        } else {
+            mobileNavMenu.classList.remove('active');
+        }
         
         console.log('Hamburger clicked, menu active:', isActive);
+        console.log('Menu element:', mobileNavMenu);
+        console.log('Menu classes:', mobileNavMenu.className);
+        console.log('Menu computed style display:', window.getComputedStyle(mobileNavMenu).display);
+        console.log('Menu computed style visibility:', window.getComputedStyle(mobileNavMenu).visibility);
+        console.log('Menu computed style opacity:', window.getComputedStyle(mobileNavMenu).opacity);
+        console.log('Menu computed style maxHeight:', window.getComputedStyle(mobileNavMenu).maxHeight);
     });
     
     // Close menu when clicking on a link
@@ -310,9 +320,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Close menu when clicking outside
+    // Close menu when clicking outside (with delay to prevent immediate close)
     document.addEventListener('click', function(e) {
-        if (!mobileNavBar.contains(e.target) && !mobileNavMenu.contains(e.target)) {
+        // Don't close if clicking on hamburger or menu
+        if (mobileNavBar.contains(e.target) || mobileNavMenu.contains(e.target)) {
+            return;
+        }
+        
+        // Only close if menu is actually open
+        if (mobileNavMenu.classList.contains('active')) {
             mobileNavToggle.classList.remove('active');
             mobileNavMenu.classList.remove('active');
         }
