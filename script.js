@@ -25,33 +25,87 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links - removes hash from URL
 document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.nav-hero-links a[href^="#"]');
+    // Function to handle smooth scroll and remove hash from URL
+    function handleSmoothScroll(e, link) {
+        e.preventDefault();
+        
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Remove hash from URL after scrolling (without page reload)
+            setTimeout(() => {
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, window.location.pathname + window.location.search);
+                }
+            }, 100);
+            
+            // Close mobile menu if open
+            const navLinksElement = document.querySelector('.nav-hero-links');
+            const navToggle = document.getElementById('navToggle');
+            if (navLinksElement && navToggle) {
+                navLinksElement.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
+        }
+    }
     
+    // Handle all navigation links (mobile menu)
+    const navLinks = document.querySelectorAll('.nav-hero-links a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
+            handleSmoothScroll(e, this);
+        });
+    });
+    
+    // Handle desktop navigation links
+    const desktopNavLinks = document.querySelectorAll('.nav-hero-links-desktop a[href^="#"]');
+    desktopNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            handleSmoothScroll(e, this);
+        });
+    });
+    
+    // Handle footer quick links
+    const footerLinks = document.querySelectorAll('.footer a[href^="#"]');
+    footerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            handleSmoothScroll(e, this);
+        });
+    });
+    
+    // Remove hash from URL on page load if it exists
+    if (window.location.hash) {
+        // Scroll to the section first
+        const hash = window.location.hash;
+        const targetSection = document.querySelector(hash);
+        if (targetSection) {
+            setTimeout(() => {
                 targetSection.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
-                // Close mobile menu if open
-                const navLinksElement = document.querySelector('.nav-hero-links');
-                const navToggle = document.getElementById('navToggle');
-                if (navLinksElement && navToggle) {
-                    navLinksElement.classList.remove('active');
-                    navToggle.classList.remove('active');
-                }
+                // Remove hash from URL after scrolling
+                setTimeout(() => {
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, null, window.location.pathname + window.location.search);
+                    }
+                }, 100);
+            }, 100);
+        } else {
+            // If section not found, just remove the hash
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.pathname + window.location.search);
             }
-        });
-    });
+        }
+    }
 });
 
 // AOS Animation initialization

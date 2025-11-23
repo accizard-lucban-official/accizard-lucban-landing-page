@@ -1708,6 +1708,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                     window.scrollTo(0, targetTop);
                                 }
                             }
+                            // Remove hash from URL after scrolling (without page reload)
+                            setTimeout(() => {
+                                if (window.history && window.history.replaceState) {
+                                    window.history.replaceState(null, null, window.location.pathname + window.location.search);
+                                }
+                            }, 100);
                             console.log('✅ Scrolled to:', targetId);
                         }, 150);
                     } else {
@@ -1730,6 +1736,71 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.style.webkitUserSelect = 'none';
                 link.style.userSelect = 'none';
             });
+            
+            // Handle desktop navigation links
+            const desktopNavLinks = document.querySelectorAll('.nav-hero-links-desktop a[href^="#"]');
+            desktopNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        setTimeout(() => {
+                            if (window.history && window.history.replaceState) {
+                                window.history.replaceState(null, null, window.location.pathname + window.location.search);
+                            }
+                        }, 100);
+                    }
+                });
+            });
+            
+            // Handle footer quick links
+            const footerLinks = document.querySelectorAll('.footer a[href^="#"]');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        setTimeout(() => {
+                            if (window.history && window.history.replaceState) {
+                                window.history.replaceState(null, null, window.location.pathname + window.location.search);
+                            }
+                        }, 100);
+                    }
+                });
+            });
+            
+            // Remove hash from URL on page load if it exists
+            if (window.location.hash) {
+                const hash = window.location.hash;
+                const targetSection = document.querySelector(hash);
+                if (targetSection) {
+                    setTimeout(() => {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        setTimeout(() => {
+                            if (window.history && window.history.replaceState) {
+                                window.history.replaceState(null, null, window.location.pathname + window.location.search);
+                            }
+                        }, 100);
+                    }, 100);
+                } else {
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, null, window.location.pathname + window.location.search);
+                    }
+                }
+            }
 
             // Download the App button functionality with mobile touch support
             const downloadAppBtn = document.querySelector('a[href="#download-apk"]');
@@ -1779,6 +1850,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                     window.scrollTo(0, targetTop);
                                 }
                             }
+                            // Remove hash from URL after scrolling
+                            setTimeout(() => {
+                                if (window.history && window.history.replaceState) {
+                                    window.history.replaceState(null, null, window.location.pathname + window.location.search);
+                                }
+                            }, 100);
                         }, 100);
                         
                         // Auto-expand the FAQ item after scrolling
