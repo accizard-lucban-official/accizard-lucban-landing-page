@@ -1426,7 +1426,7 @@ ul {
 .section-title {
   text-align: center;
   font-size: 1.8rem;
-  font-weight: 400;
+  font-weight: 700;
   color: #f97316;
   margin-bottom: 1rem;
   font-family: 'Okta Neue', sans-serif;
@@ -1497,7 +1497,7 @@ ul {
 
 .about-text h2 {
   font-size: 1.8rem;
-  font-weight: 400;
+  font-weight: 700;
   color: #f97316;
   margin-bottom: 15px;
   font-family: 'Okta Neue', sans-serif;
@@ -1618,7 +1618,7 @@ ul {
 
 .mission h3, .vision h3 {
   font-size: 1.8rem;
-  font-weight: 400;
+  font-weight: 700;
   color: #f97316;
   margin-bottom: 12px;
   font-family: 'Okta Neue', sans-serif;
