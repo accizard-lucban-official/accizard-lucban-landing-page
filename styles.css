@@ -930,6 +930,14 @@ ul {
   transition: all 0.3s ease;
   min-width: 140px;
   text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.nav-hero-btn i {
+  font-size: 0.85rem;
 }
 
 .nav-hero-btn:hover {
@@ -4383,6 +4391,218 @@ ul {
   .send-btn svg {
     width: 16px;
     height: 16px;
+  }
+}
+
+/* ========= Google Form Modal ========= */
+.google-form-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  z-index: 10001;
+  animation: fadeIn 0.3s ease;
+  overflow-y: auto;
+}
+
+.google-form-modal.active {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+}
+
+.google-form-modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 0;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: scaleUp 0.3s ease;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border: 3px solid #f97316;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+  max-height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.google-form-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 30px;
+  border-bottom: 3px solid #f97316;
+  background: #f97316;
+  color: white;
+  border-radius: 17px 17px 0 0;
+  flex-shrink: 0;
+}
+
+.google-form-header i {
+  font-size: 1.5rem;
+}
+
+.google-form-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Okta Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.google-form-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #f97316;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  z-index: 10;
+  line-height: 1;
+}
+
+.google-form-close-btn:hover {
+  background: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.google-form-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.google-form-container iframe {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  border: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile Responsiveness for Google Form Modal */
+@media (max-width: 768px) {
+  .google-form-modal.active {
+    padding: 10px;
+  }
+
+  .google-form-modal-content {
+    width: 95%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: calc(100vh - 40px);
+    max-height: calc(100vh - 40px);
+    border-radius: 15px;
+  }
+
+  .google-form-header {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .google-form-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .google-form-header i {
+    font-size: 1.2rem;
+  }
+
+  .google-form-close-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.5rem;
+    top: 10px;
+    right: 15px;
+  }
+
+  .google-form-container {
+    min-height: 400px;
+  }
+
+  .google-form-container iframe {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .google-form-modal.active {
+    padding: 5px;
+  }
+
+  .google-form-modal-content {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: calc(100vh - 20px);
+    max-height: calc(100vh - 20px);
+    border-radius: 12px;
+  }
+
+  .google-form-header {
+    padding: 12px 15px;
+  }
+
+  .google-form-header h2 {
+    font-size: 1rem;
+  }
+
+  .google-form-header i {
+    font-size: 1rem;
+  }
+
+  .google-form-close-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 1.3rem;
+    top: 8px;
+    right: 10px;
+  }
+
+  .google-form-container {
+    min-height: 350px;
+  }
+
+  .google-form-container iframe {
+    min-height: 350px;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+  .google-form-header h2 {
+    font-size: 0.9rem;
+  }
+
+  .google-form-container {
+    min-height: 300px;
+  }
+
+  .google-form-container iframe {
+    min-height: 300px;
   }
 }
 

@@ -12,7 +12,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     
     <!-- Content Security Policy - Allow Facebook and YouTube embeds -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://cdn.jsdelivr.net https://polyfill.io https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.cdnfonts.com https://cdnjs.cloudflare.com https://staticxx.facebook.com https://static.xx.fbcdn.net; font-src 'self' https://fonts.cdnfonts.com https://cdnjs.cloudflare.com data:; frame-src 'self' https://*.facebook.com https://www.facebook.com https://web.facebook.com https://facebook.com https://m.facebook.com https://www.youtube.com https://youtube.com; connect-src 'self' https://*.facebook.com https://www.facebook.com https://web.facebook.com https://connect.facebook.net https://api.emailjs.com https://www.youtube.com https://youtube.com https://graph.facebook.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob: https://img.youtube.com https://*.fbcdn.net https://scontent.xx.fbcdn.net https://scontent.fbcdn.net https://fbcdn.net https://static.xx.fbcdn.net https://staticxx.facebook.com https://platform-lookaside.fbsbx.com; media-src 'self' https: blob:; child-src 'self' https://*.facebook.com https://www.facebook.com https://web.facebook.com https://facebook.com https://m.facebook.com; worker-src 'self' blob:; object-src 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://cdn.jsdelivr.net https://polyfill.io https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.cdnfonts.com https://cdnjs.cloudflare.com https://staticxx.facebook.com https://static.xx.fbcdn.net; font-src 'self' https://fonts.cdnfonts.com https://cdnjs.cloudflare.com data:; frame-src 'self' https://*.facebook.com https://www.facebook.com https://web.facebook.com https://facebook.com https://m.facebook.com https://www.youtube.com https://youtube.com https://docs.google.com https://*.google.com; connect-src 'self' https://*.facebook.com https://www.facebook.com https://web.facebook.com https://connect.facebook.net https://api.emailjs.com https://www.youtube.com https://youtube.com https://graph.facebook.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob: https://img.youtube.com https://*.fbcdn.net https://scontent.xx.fbcdn.net https://scontent.fbcdn.net https://fbcdn.net https://static.xx.fbcdn.net https://staticxx.facebook.com https://platform-lookaside.fbsbx.com; media-src 'self' https: blob:; child-src 'self' https://*.facebook.com https://www.facebook.com https://web.facebook.com https://facebook.com https://m.facebook.com https://docs.google.com https://*.google.com; worker-src 'self' blob:; object-src 'none';">
     
     <!-- Browser Compatibility Polyfills for Android 8+ and older iOS -->
     <script>
@@ -214,6 +214,7 @@
             <div class="nav-hero-buttons">
                 <a href="https://m.me/mdrrmolucban" target="_blank" rel="noopener noreferrer" class="nav-hero-btn">Contact Us</a>
                 <a href="#download-apk" class="nav-hero-btn">Download App</a>
+                <a href="#" class="nav-hero-btn" id="fillFormBtn">Fill Out Form <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -1098,6 +1099,28 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
+    <!-- Google Form Modal Popup -->
+    <div id="googleFormModal" class="google-form-modal">
+        <div class="google-form-modal-content">
+            <span class="google-form-close-btn">&times;</span>
+            <div class="google-form-header">
+                <i class="fas fa-file-alt"></i>
+                <h2>Fill Out Form</h2>
+            </div>
+            <div class="google-form-container">
+                <iframe 
+                    id="googleFormIframe"
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScjuu2rliDqdIk3-COM5nod3aDQEcgSL6F54PngyOh7oS-ZXg/viewform?embedded=true"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    loading="lazy">
+                    Loading…
+                </iframe>
+            </div>
+        </div>
+    </div>
+
     <style>
     @keyframes spin {
         0% { transform: rotate(0deg); }
@@ -1691,6 +1714,50 @@ document.addEventListener('DOMContentLoaded', () => {
           // No need to prevent default or show popup
           console.log('Redirecting to Messenger...');
         });
+      });
+
+      // Google Form Modal Functionality
+      const fillFormBtn = document.getElementById('fillFormBtn');
+      const googleFormModal = document.getElementById('googleFormModal');
+      const googleFormCloseBtn = document.querySelector('.google-form-close-btn');
+
+      // Open modal when "Fill Out Form" button is clicked
+      if (fillFormBtn) {
+        fillFormBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (googleFormModal) {
+            googleFormModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      }
+
+      // Close modal when close button is clicked
+      if (googleFormCloseBtn) {
+        googleFormCloseBtn.addEventListener('click', function() {
+          if (googleFormModal) {
+            googleFormModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+
+      // Close modal when clicking outside the modal content
+      if (googleFormModal) {
+        googleFormModal.addEventListener('click', function(e) {
+          if (e.target === googleFormModal) {
+            googleFormModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && googleFormModal && googleFormModal.classList.contains('active')) {
+          googleFormModal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
       });
     });
   </script>
