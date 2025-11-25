@@ -1704,6 +1704,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
       
+      // Download the App button functionality with auto-expand FAQ
+      const downloadAppBtn = document.querySelector('a[href="#download-apk"]');
+      
+      if (downloadAppBtn) {
+        const handleDownloadApp = function(e) {
+          // Prevent default behavior
+          if (e.preventDefault) {
+            e.preventDefault();
+          }
+          if (e.stopPropagation) {
+            e.stopPropagation();
+          }
+          
+          const targetElement = document.getElementById('download-apk');
+          
+          if (targetElement) {
+            // Scroll to the FAQ section
+            setTimeout(() => {
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+              
+              // Remove hash from URL after scrolling
+              setTimeout(() => {
+                if (window.history && window.history.replaceState) {
+                  window.history.replaceState(null, null, window.location.pathname + window.location.search);
+                }
+              }, 100);
+            }, 100);
+            
+            // Auto-expand the FAQ item after scrolling
+            setTimeout(() => {
+              // Close all other FAQ items and reset their icons
+              document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== targetElement) {
+                  item.classList.remove('active');
+                  const otherIcon = item.querySelector('.faq-icon');
+                  if (otherIcon) {
+                    otherIcon.textContent = '+';
+                  }
+                }
+              });
+              
+              // Expand the target FAQ item
+              targetElement.classList.add('active');
+              const targetIcon = targetElement.querySelector('.faq-icon');
+              if (targetIcon) {
+                targetIcon.textContent = '−';
+              }
+            }, 600);
+          }
+          
+          return false;
+        };
+        
+        // Add both click and touchstart events for mobile compatibility
+        downloadAppBtn.addEventListener('click', handleDownloadApp);
+        downloadAppBtn.addEventListener('touchstart', handleDownloadApp);
+        
+        // Ensure proper touch styling
+        downloadAppBtn.style.touchAction = 'manipulation';
+        downloadAppBtn.style.webkitTouchCallout = 'none';
+        downloadAppBtn.style.webkitUserSelect = 'none';
+        downloadAppBtn.style.userSelect = 'none';
+      }
+      
       // Contact Us Button Handler - Redirects to Messenger
       // Contact form popup is now disabled, buttons redirect directly to Messenger
       const contactButtons = document.querySelectorAll('a[href*="m.me"]');

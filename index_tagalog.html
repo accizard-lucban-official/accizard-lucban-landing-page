@@ -2126,14 +2126,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Auto-expand the FAQ item after scrolling
                         setTimeout(() => {
                             console.log('🔍 Auto-expanding FAQ item...');
-                            targetElement.classList.add('active');
                             
-                            // Close other FAQ items
+                            // Close all other FAQ items and reset their icons
                             document.querySelectorAll('.faq-item').forEach(item => {
                                 if (item !== targetElement) {
                                     item.classList.remove('active');
+                                    const otherAnswer = item.querySelector('.faq-answer');
+                                    const otherIcon = item.querySelector('.faq-icon');
+                                    if (otherAnswer && otherIcon) {
+                                        otherAnswer.style.maxHeight = '0px';
+                                        otherIcon.textContent = '+';
+                                    }
                                 }
                             });
+                            
+                            // Expand the target FAQ item
+                            targetElement.classList.add('active');
+                            const targetAnswer = targetElement.querySelector('.faq-answer');
+                            const targetIcon = targetElement.querySelector('.faq-icon');
+                            
+                            if (targetAnswer && targetIcon) {
+                                // Calculate the actual height needed
+                                targetAnswer.style.maxHeight = 'none';
+                                const height = targetAnswer.scrollHeight;
+                                targetAnswer.style.maxHeight = '0px';
+                                // Force reflow
+                                targetAnswer.offsetHeight;
+                                targetAnswer.style.maxHeight = height + 'px';
+                                targetIcon.textContent = '×';
+                            }
                             
                             console.log('✅ FAQ item expanded and others closed');
                         }, 600);
